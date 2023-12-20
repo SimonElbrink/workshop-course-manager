@@ -1,5 +1,6 @@
 package se.lexicon.course_manager.model;
 
+
 import java.time.LocalDate;
 import java.util.Collection;
 
@@ -75,12 +76,6 @@ public class Course {
     @Override
     public String toString() {
         return "Course{" +
-                "id=" + id +
-                ", courseName='" + courseName + '\'' +
-                ", startDate=" + startDate +
-                ", weekDuration=" + weekDuration +
-                ", students=" + students +
-                '}';
+                "id=" + id +", courseName='" + courseName + '\'' + ", startDate=" + startDate + ", weekDuration=" + weekDuration + ", students=" + students + '}';
     }
 }
-
