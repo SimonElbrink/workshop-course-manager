@@ -54,6 +54,13 @@ public class StudentCollectionRepository implements StudentDao {
 
     @Override
     public boolean removeStudent(Student student) {
+        if (students.contains(student)){
+            students.remove(student); // Is this enough? Just remove the object Student
+            //which is passed in here? Do we need to worry about how the student will be
+            //removed for example by id? That is probably already implemented and no need
+            //to worry about it?
+            return true;
+        }
         return false;
     }
 

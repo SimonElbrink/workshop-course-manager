@@ -16,6 +16,14 @@ public class Student {
     private String address;
 
 
+    public Student(int id, String name, String email, String address) {
+        setId(id);
+        this.name = name;
+        this.email = email;
+        this.address = address;
+    }
+
+
     public int getId() {
         return id;
     }
@@ -49,12 +57,7 @@ public class Student {
         this.address = address;
     }
 
-    public Student(int id, String name, String email, String address) {
-        setId(id);
-        this.name = name;
-        this.email = email;
-        this.address = address;
-    }
+
 
     @Override
     public boolean equals(Object o) {

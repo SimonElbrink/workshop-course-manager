@@ -16,7 +16,7 @@ public class Course {
     Collection<Student> students = new HashSet<>();
 
 
-    public Course(String courseName, LocalDate startDate, int weekDuration) {
+    public Course(int id, String courseName, LocalDate startDate, int weekDuration) {
         setId(id);
         setCourseName(courseName);
         setStartDate(startDate);
