@@ -4,6 +4,7 @@ package se.lexicon.course_manager.data.dao;
 
 import se.lexicon.course_manager.data.sequencers.CourseSequencer;
 import se.lexicon.course_manager.model.Course;
+import se.lexicon.course_manager.model.Student;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -24,20 +25,22 @@ public class CourseCollectionRepository implements CourseDao{
 
     @Override
     public Course createCourse(String courseName, LocalDate startDate, int weekDuration) {
-        int id = courseSequencer.nextCourseId();
+        int id = CourseSequencer.nextCourseId();
         Course course = new Course (id, courseName, startDate, weekDuration, new HashSet<>());
-        course.add(course);
+        courses.add(course);
         return course;
     }
 
     @Override
     public Course findById(int id) {
-        for (Course course : courses){
-            if(course.getId)()==id){
+        for (Course course : courses)
+        {
+            if(course.getId)() == id)
+            {
                 return course;
             }
         }
-        return null;
+
     }
 
     @Override
