@@ -1,5 +1,7 @@
 package se.lexicon.course_manager.model;
 
+import se.lexicon.course_manager.data.sequencers.StudentSequencer;
+
 import java.util.Objects;
 
 public class Student {
