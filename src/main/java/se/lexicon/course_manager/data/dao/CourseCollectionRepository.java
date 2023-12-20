@@ -3,8 +3,10 @@ package se.lexicon.course_manager.data.dao;
 
 
 import se.lexicon.course_manager.model.Course;
+import se.lexicon.course_manager.model.Student;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 
@@ -39,32 +41,58 @@ public class CourseCollectionRepository implements CourseDao{
 
     @Override
     public Collection<Course> findByNameContains(String name) {
-        return null;
+        Collection<Course> coursesFound = new ArrayList<>();
+        for (Course course : courses) {
+            if (course.getCourseName().contains(name)) {
+                coursesFound.add(course);
+            }
+        }
+        return coursesFound;
     }
 
     @Override
     public Collection<Course> findByDateBefore(LocalDate end) {
-        return null;
+        Collection<Course> coursesFound = new ArrayList<>();
+        for (Course course : courses) {
+            if (course.getStartDate().isBefore(end)) {
+                coursesFound.add(course);
+            }
+        }
+        return coursesFound;
     }
 
     @Override
     public Collection<Course> findByDateAfter(LocalDate start) {
-        return null;
+        Collection<Course> coursesFound = new ArrayList<>();
+        for (Course course : courses) {
+            if (course.getStartDate().isAfter(start)) {
+                coursesFound.add(course);
+            }
+        }
+        return coursesFound;
     }
 
     @Override
     public Collection<Course> findAll() {
-        return null;
+        return this.courses;
     }
 
     @Override
     public Collection<Course> findByStudentId(int studentId) {
-        return null;
+        Collection<Course> coursesFound = new ArrayList<>();
+        for (Course course : courses) {
+            for (Student student : course.getStudents()) {
+                if (student.getId() == studentId) {
+                    coursesFound.add(course);
+                }
+            }
+        }
+        return coursesFound;
     }
 
     @Override
     public boolean removeCourse(Course course) {
-        return false;
+        return courses.remove(course);
     }
 
     @Override
