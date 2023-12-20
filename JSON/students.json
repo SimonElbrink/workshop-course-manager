@@ -1,1 +1,16 @@
-[ ]
+[ {
+  "id" : 3,
+  "name" : "Isak Lonn",
+  "email" : "Isak@lexicon.se",
+  "address" : "Väääästersåp"
+}, {
+  "id" : 1,
+  "name" : "Rasmus Andersson",
+  "email" : "rasmus.alexander.andersson@gmail.com",
+  "address" : "Tuvanäsvägen 4"
+}, {
+  "id" : 2,
+  "name" : "August AWESADAW",
+  "email" : "August@lexicon.se",
+  "address" : "AWA"
+} ]

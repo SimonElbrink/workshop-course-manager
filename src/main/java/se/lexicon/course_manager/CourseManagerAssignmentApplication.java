@@ -8,7 +8,7 @@ import se.lexicon.course_manager.data.dao.StudentCollectionRepository;
 public class CourseManagerAssignmentApplication {
 
     public static void main(String[] args) {
-        //SpringApplication.run(CourseManagerAssignmentApplication.class, args);
+        SpringApplication.run(CourseManagerAssignmentApplication.class, args);
     }
 
 }
