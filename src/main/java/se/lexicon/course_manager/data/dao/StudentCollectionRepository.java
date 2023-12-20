@@ -2,13 +2,14 @@ package se.lexicon.course_manager.data.dao;
 
 
 
+import se.lexicon.course_manager.data.sequencers.StudentSequencer;
 import se.lexicon.course_manager.model.Student;
 
 import java.util.Collection;
 import java.util.HashSet;
 
 
-public class StudentCollectionRepository implements StudentDao {
+public class StudentCollectionRepository implements StudentDao{
 
     private Collection<Student> students;
 
@@ -18,12 +19,15 @@ public class StudentCollectionRepository implements StudentDao {
 
     @Override
     public Student createStudent(String name, String email, String address) {
-        return null;
+        Student student = new Student(StudentSequencer.nextStudentId(),name, email, address);
+        students.add(student);
     }
 
     @Override
     public Student findByEmailIgnoreCase(String email) {
-        return null;
+        for (Student student: students) {
+            if(student)
+        }
     }
 
     @Override
