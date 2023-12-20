@@ -20,11 +20,20 @@ public class CourseCollectionRepository implements CourseDao{
 
     @Override
     public Course createCourse(String courseName, LocalDate startDate, int weekDuration) {
-        return null;
+        Course course = new Course();
+        course.setCourseName(courseName);
+        course.setStartDate(startDate);
+        course.setWeekDuration(weekDuration);
+        return course;
     }
 
     @Override
     public Course findById(int id) {
+        for (Course course : courses) {
+            if (course.getId() == id) {
+                return course;
+            }
+        }
         return null;
     }
 

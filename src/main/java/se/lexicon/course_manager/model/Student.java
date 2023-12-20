@@ -1,19 +1,23 @@
 package se.lexicon.course_manager.model;
 
-import java.time.LocalDate;
+import se.lexicon.course_manager.data.sequencers.StudentSequencer;
+
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Student {
+public class Student implements Serializable {
     private int id;
     private String name;
     private String email;
     private String address;
 
     public Student() {
+        this.id = StudentSequencer.getStudentSequencer();
     }
 
     public Student(int id) {
         this.id = id;
+
     }
 
     public int getId() {

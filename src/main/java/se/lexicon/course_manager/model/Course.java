@@ -1,10 +1,13 @@
 package se.lexicon.course_manager.model;
 
+import se.lexicon.course_manager.data.sequencers.CourseSequencer;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Objects;
 
-public class Course {
+public class Course implements Serializable {
     private int id;
     private String courseName;
     private LocalDate startDate;
@@ -15,7 +18,7 @@ public class Course {
     }
 
     public Course(int id) {
-        this.id = id;
+        this.id = CourseSequencer.getCourseSequencer();
     }
 
     public int getId() {
@@ -38,6 +41,13 @@ public class Course {
         this.startDate = startDate;
     }
 
+    public int getWeekDuration() {
+        return this.weekDuration;
+    }
+    public void setWeekDuration(int weekDuration) {
+        this.weekDuration = weekDuration;
+    }
+
     public Collection<Student> getStudents() {
         return students;
     }
@@ -46,6 +56,16 @@ public class Course {
         this.students = students;
     }
 
+    public boolean enrollStudent(Student student){
+        if(student==null || students.contains(student)){
+            return false;
+        }
+        students.add(student);
+        return true;
+    }
+    public boolean unrollStudent(Student student){
+        return students.remove(student);
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
