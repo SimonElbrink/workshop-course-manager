@@ -31,7 +31,8 @@ public class StudentManager implements StudentService {
 
     @Override
     public StudentView create(CreateStudentForm form) {
-        return new StudentView(form.getId(),form.getName(), form.getEmail(), form.getAddress());
+        Student student = studentDao.createStudent(form.getName(), form.getEmail(), form.getAddress());
+        return new StudentView(student.getId(),form.getName(), form.getEmail(), form.getAddress());
     }
 
     @Override

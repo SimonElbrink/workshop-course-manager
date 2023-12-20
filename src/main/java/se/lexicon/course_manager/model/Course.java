@@ -54,6 +54,8 @@ public class Course implements Serializable {
         return students;
     }
 
+    public int getWeekDuration(){return weekDuration;}
+
     public void setStudents(Collection<Student> students) {
         this.students = students;
     }
