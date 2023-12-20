@@ -40,7 +40,11 @@ public class CourseManager implements CourseService {
 
     @Override
     public CourseView update(UpdateCourseForm form) {
-        return null;
+        Course course = courseDao.findById(form.getId());
+        if(course == null) return null;
+        course.setCourseName(form.getCourseName());
+        course.setStartDate(form.getStartDate());
+        return converters.courseToCourseView(course);
     }
 
     @Override
