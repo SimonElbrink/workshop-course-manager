@@ -49,7 +49,7 @@ public class Course implements Serializable {
     }
 
     public Collection<Student> getStudents() {
-        return students;
+        return this.students;
     }
 
     public void setStudents(Collection<Student> students) {
