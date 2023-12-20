@@ -34,7 +34,8 @@ public class CourseManager implements CourseService {
     //Madhu
     @Override
     public CourseView create(CreateCourseForm form) {
-        return converters.courseToCourseView(courseDao.createCourse(form.getCourseName(), form.getStartDate(), form.getWeekDuration()));
+        return converters.courseToCourseView(
+                courseDao.createCourse(form.getCourseName(), form.getStartDate(), form.getWeekDuration()));
     }
 
     //Madhu
@@ -43,12 +44,18 @@ public class CourseManager implements CourseService {
     public CourseView update(UpdateCourseForm form) {
         for (CourseView courseView : converters.coursesToCourseViews(courseDao.findAll())) {
             if (courseView.getId() == form.getId()) {
-                return courseView;
+                CourseView course = new CourseView(
+                        courseView.getId(),
+                        form.getCourseName(),
+                        form.getStartDate(),
+                        form.getWeekDuration(),
+                        courseView.getStudents());
+                courseDao.removeCourse(courseDao.findById(courseView.getId()));
+                return course;
             }
         }
         return null;
     }
-
 
     @Override
     public List<CourseView> searchByCourseName(String courseName) {
@@ -62,7 +69,6 @@ public class CourseManager implements CourseService {
     }
 
 
-    //Daniel
     @Override
     public List<CourseView> searchByDateBefore(LocalDate end) {
         List<CourseView> courses = new ArrayList<>();
@@ -74,14 +80,12 @@ public class CourseManager implements CourseService {
         return courses;
     }
 
-    // Daniel
     @Override
     public List<CourseView> searchByDateAfter(LocalDate start) {
         List<CourseView> courses = new ArrayList<>();
         for (CourseView view : converters.coursesToCourseViews(courseDao.findAll())) {
             if(view.getStartDate().isAfter(start)) {
                 courses.add(view);
-
             }
         }
         return courses;
@@ -89,15 +93,30 @@ public class CourseManager implements CourseService {
 
     @Override
     public boolean addStudentToCourse(int courseId, int studentId) {
-        return false;
+        CourseView course = findById(courseId);
+        StudentView student = converters.studentToStudentView(studentDao.findById(courseId));
+        if ((course == null) || (student == null)) {
+            return false;
+        }
+        course.getStudents().add(student);
+        return true;
     }
 
     @Override
     public boolean removeStudentFromCourse(int courseId, int studentId) {
-        return false;
+        CourseView course = findById(courseId);
+        if (course == null) {
+            return false;
+        }
+        for (StudentView student : course.getStudents()) {
+            if (student.getId() == studentId) {
+                course.getStudents().remove(student);
+                return true;
+            }
+        }
+        return true;
     }
 
-    // Chris
     @Override
     public CourseView findById(int id) {
         for (CourseView course : converters.coursesToCourseViews(courseDao.findAll())) {

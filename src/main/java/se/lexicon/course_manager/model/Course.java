@@ -21,6 +21,7 @@ public class Course implements Serializable {
         this.id = CourseSequencer.getCourseSequencer();
     }
 
+
     public int getId() {
         return id;
     }
