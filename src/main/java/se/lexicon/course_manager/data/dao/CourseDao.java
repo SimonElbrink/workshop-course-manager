@@ -1,8 +1,6 @@
 package se.lexicon.course_manager.data.dao;
 
 
-
-
 import se.lexicon.course_manager.model.Course;
 
 import java.time.LocalDate;

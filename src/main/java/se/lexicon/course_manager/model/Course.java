@@ -1,15 +1,26 @@
 package se.lexicon.course_manager.model;
 
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.HashSet;
 
-public class Course {
+public class Course implements Serializable {
     private int id;
     private String courseName;
     private LocalDate startDate;
     private int weekDuration;
     private Collection<Student> students;
+
+    public Course() {
+        this.students = new HashSet<>();
+    }
+
+    public Course(int id) {
+        this.id = id;
+        this.students = new HashSet<>();
+    }
 
     public Course(int id, String courseName, LocalDate startDate, int weekDuration, Collection<Student> students) {
         this.id = id;
@@ -48,10 +59,13 @@ public class Course {
     }
 
     public boolean enrollStudent(Student student) {
+        if (student == null || students.contains(student)) {
+            return false;
+        }
         return students.add(student);
     }
 
-    public boolean unenrollStudent(Student student) {
+        public boolean unenrollStudent(Student student) {
         return students.remove(student);
     }
 
