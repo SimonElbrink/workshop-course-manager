@@ -18,6 +18,8 @@ public class StudentCollectionRepository implements StudentDao{
         this.students = students;
     }
 
+    public StudentCollectionRepository() { }
+
     @Override
     public Student createStudent(String name, String email, String address) {
         Student student = new Student(StudentSequencer.nextStudentId(),name, email, address);
