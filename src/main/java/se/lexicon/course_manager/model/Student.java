@@ -1,5 +1,7 @@
 package se.lexicon.course_manager.model;
 
+import se.lexicon.course_manager.data.sequencers.StudentSequencer;
+
 import java.util.Objects;
 import java.util.StringJoiner;
 
@@ -19,6 +21,7 @@ public class Student {
     }
 
     public void setId(int id) {
+        //this.id = StudentSequencer.nextStudentId();
         this.id = id;
     }
 
