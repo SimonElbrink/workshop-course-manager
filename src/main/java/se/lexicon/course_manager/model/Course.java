@@ -2,6 +2,7 @@ package se.lexicon.course_manager.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Course {
 
@@ -13,7 +14,7 @@ public class Course {
 
     private int weekDuration;
 
-    ArrayList<Student> students = new ArrayList<>();
+    HashSet<Student> students = new HashSet<>();
 
 
     public int getId() {
@@ -48,11 +49,11 @@ public class Course {
         this.weekDuration = weekDuration;
     }
 
-    public ArrayList<Student> getStudents() {
+    public HashSet<Student> getStudents() {
         return students;
     }
 
-    public void setStudents(ArrayList<Student> students) {
+    public void setStudents(HashSet<Student> students) {
         this.students = students;
     }
 }
