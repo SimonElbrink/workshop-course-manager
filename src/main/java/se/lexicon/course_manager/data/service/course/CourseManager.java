@@ -1,6 +1,5 @@
 package se.lexicon.course_manager.data.service.course;
 
-import jdk.tools.jlink.internal.plugins.VendorBugURLPlugin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import se.lexicon.course_manager.data.dao.CourseDao;

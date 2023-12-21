@@ -22,9 +22,9 @@ public class StudentCollectionRepository implements StudentDao {
     public Student createStudent(String name, String email, String address) {
         Student student= new Student();
         student.setName(name);
-        student.setEmail(email);;
+        student.setEmail(email);
         student.setAddress(address);
-        return student;
+        return students.add(student) ? student : null;
     }
 
     @Override
