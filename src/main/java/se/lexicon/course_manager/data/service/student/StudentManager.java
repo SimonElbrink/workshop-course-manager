@@ -9,7 +9,7 @@ import se.lexicon.course_manager.dto.forms.CreateStudentForm;
 import se.lexicon.course_manager.dto.forms.UpdateStudentForm;
 import se.lexicon.course_manager.dto.views.StudentView;
 
-
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,38 +26,65 @@ public class StudentManager implements StudentService {
         this.converters = converters;
     }
 
+
     @Override
     public StudentView create(CreateStudentForm form) {
-        return null;
+        return converters.studentToStudentView(studentDao.createStudent(form.getName(), form.getEmail(), form.getAddress()));
     }
 
+    // Satya
     @Override
     public StudentView update(UpdateStudentForm form) {
+        for (StudentView studentView : converters.studentsToStudentViews(studentDao.findAll())) {
+            if (studentView.getId() == form.getId()) {
+                return studentView;
+            }
+        }
         return null;
     }
 
+    // Madhu
     @Override
     public StudentView findById(int id) {
+        for (StudentView studentView : converters.studentsToStudentViews(studentDao.findAll())) {
+            if (studentView.getId() == id) {
+                return studentView;
+            }
+        }
         return null;
     }
 
+    // Daniel
     @Override
     public StudentView searchByEmail(String email) {
+        for (StudentView studentView : converters.studentsToStudentViews(studentDao.findAll())) {
+            if (studentView.getEmail() == email) {
+                return studentView;
+            }
+        }
         return null;
     }
 
+
+    // Christian
     @Override
     public List<StudentView> searchByName(String name) {
-        return null;
+        List<StudentView> students = new ArrayList<>();
+        for (StudentView student : converters.studentsToStudentViews(studentDao.findAll())) {
+            if (student.getName().equalsIgnoreCase(name)) {
+                students.add(student);
+            }
+        }
+        return students;
     }
 
     @Override
     public List<StudentView> findAll() {
-        return null;
+        return converters.studentsToStudentViews(studentDao.findAll());
     }
 
     @Override
     public boolean deleteStudent(int id) {
-        return false;
+        return studentDao.removeStudent(studentDao.findById(id));
     }
 }
