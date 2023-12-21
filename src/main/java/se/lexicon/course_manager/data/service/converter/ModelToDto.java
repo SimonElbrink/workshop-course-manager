@@ -6,29 +6,30 @@ import se.lexicon.course_manager.dto.views.StudentView;
 import se.lexicon.course_manager.model.Course;
 import se.lexicon.course_manager.model.Student;
 
-
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class ModelToDto implements Converters {
     @Override
     public StudentView studentToStudentView(Student student) {
-        return null;
+        return new StudentView(student.getId(), student.getName(), student.getEmail(), student.getAddress());
     }
-
     @Override
     public CourseView courseToCourseView(Course course) {
-        return null;
+        return new CourseView(course.getId(),course.getCourseName(),course.getStartDate(),course.getWeekDuration(),studentsToStudentViews(course.getStudents()));
     }
-
     @Override
     public List<CourseView> coursesToCourseViews(Collection<Course> courses) {
-        return null;
+        return courses.stream()
+                .map(this::courseToCourseView)
+                .collect(Collectors.toList());
     }
-
     @Override
     public List<StudentView> studentsToStudentViews(Collection<Student> students) {
-        return null;
+        return students.stream()
+                .map(this::studentToStudentView)
+                .collect(Collectors.toList());
     }
 }
