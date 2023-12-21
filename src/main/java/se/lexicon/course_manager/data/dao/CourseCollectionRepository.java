@@ -80,14 +80,17 @@ public class CourseCollectionRepository implements CourseDao{
     @Override
     public Collection<Course> findByStudentId(int studentId) {
         HashSet<Course> result = new HashSet<>();
-        //for (Course course : courses) {
-        //    if (course.getStudents()) {
-        //
-        //    }
-        //}
-        return null;
-    }
+        for (Course course : courses) {
+            for (Student student : course.getStudents()) {
+                if (student.getId() == studentId) {
+                    result.add(course);
+                }
+            }
 
+        }
+        return result;
+    }
+// static vs instance pdf
     @Override
     public boolean removeCourse(Course course) {
         return courses.remove(course);

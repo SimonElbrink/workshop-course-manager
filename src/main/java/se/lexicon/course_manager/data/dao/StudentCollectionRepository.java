@@ -31,10 +31,12 @@ public class StudentCollectionRepository implements StudentDao {
 
     @Override
     public Student findByEmailIgnoreCase(String email) {
+        //if (students.contains(student.getEmail())) {
+        //    return student;
+        //}
+
         for (Student student : students) {
-            //if (students.contains(student.getEmail())) {
-            //    return student;
-            //}
+
             if (student.getEmail().equalsIgnoreCase(email)) {
                 return student;
             }
