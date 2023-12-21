@@ -12,6 +12,13 @@ public class Student implements Serializable {
     private String email;
     private String address;
 
+    public Student() {
+    }
+
+    public Student(int id) {
+        this.id = id;
+    }
+
     public Student(String name, String email, String address) {
         setId(StudentSequencer.nextStudentId());
         setName(name);
@@ -31,8 +38,8 @@ public class Student implements Serializable {
         return name;
     }
 
-    private void setName(String name) {
-        if(name == null || name.isBlank()) throw new IllegalArgumentException("Name was null");
+    public void setName(String name) {
+        //if(name == null || name.isEmpty()) throw new IllegalArgumentException("Name was null");
         this.name = name;
     }
 
@@ -40,8 +47,8 @@ public class Student implements Serializable {
         return email;
     }
 
-    private void setEmail(String email) {
-        if(email==null || email.isBlank()) throw new IllegalArgumentException("Email was null");
+    public void setEmail(String email) {
+        //if(email==null || email.isEmpty()) throw new IllegalArgumentException("Email was null");
         this.email = email;
     }
 
@@ -50,8 +57,8 @@ public class Student implements Serializable {
         return address;
     }
 
-    private void setAddress(String address) {
-        if(address==null || address.isBlank()) throw new IllegalArgumentException("Address was null");
+    public void setAddress(String address) {
+        //if(address==null || address.isEmpty()) throw new IllegalArgumentException("Address was null");
         this.address = address;
     }
 

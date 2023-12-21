@@ -1,5 +1,6 @@
 package se.lexicon.course_manager.model;
 
+import se.lexicon.course_manager.data.dao.CourseCollectionRepository;
 import se.lexicon.course_manager.data.sequencers.CourseSequencer;
 
 import java.io.Serializable;
@@ -16,7 +17,14 @@ public class Course implements Serializable {
     private int weekDuration;
     private Collection<Student> students;
 
-    public Course(String courseName, LocalDate startDate,int weekDuration) {
+    public Course() {
+    }
+
+    public Course(int id) {
+        this.id = id;
+    }
+
+    public Course(String courseName, LocalDate startDate, int weekDuration) {
         setId(CourseSequencer.nextCourseId());
         setCourseName(courseName);
         setStartDate(startDate);
@@ -36,7 +44,7 @@ public class Course implements Serializable {
     }
 
     private void setCourseName(String courseName) {
-        if (courseName == null && courseName.isBlank()) throw new IllegalArgumentException("Course name was null");
+        // if (courseName == null && courseName.isEmpty()) throw new IllegalArgumentException("Course name was null");
         this.courseName = courseName;
     }
 
@@ -45,7 +53,7 @@ public class Course implements Serializable {
     }
 
     private void setStartDate(LocalDate startDate) {
-        if (startDate == null) throw new IllegalArgumentException("Start date was null");
+        // if (startDate == null) throw new IllegalArgumentException("Start date was null");
         this.startDate = startDate;
     }
 
@@ -54,7 +62,7 @@ public class Course implements Serializable {
     }
 
     private void setWeekDuration(int weekDuration){
-        if (weekDuration == 0) throw new IllegalArgumentException("Week duration was 0");
+        // if (weekDuration == 0) throw new IllegalArgumentException("Week duration was 0");
         this.weekDuration = weekDuration;
     }
 

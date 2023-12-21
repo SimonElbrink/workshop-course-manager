@@ -1,5 +1,7 @@
 package se.lexicon.course_manager.data.dao;
 
+
+
 import se.lexicon.course_manager.model.Student;
 
 import java.util.ArrayList;
@@ -18,7 +20,14 @@ public class StudentCollectionRepository implements StudentDao {
 
     @Override
     public Student createStudent(String name, String email, String address) {
-        return new Student(name, email, address);
+        Student student =  new Student(name, email, address);
+        if(this.students == null){
+            this.students = new ArrayList<>();
+        }
+        else {
+            this.students.add(student);
+        }
+        return student;
     }
 
     @Override
@@ -67,11 +76,8 @@ public class StudentCollectionRepository implements StudentDao {
 
     @Override
     public boolean removeStudent(Student student) {
-        if(this.students != null && this.students.contains(student)){
-            this.students.remove(student);
-            return true;
-        }
-        return false;
+        return this.students.remove(student);
+
     }
 
     @Override
