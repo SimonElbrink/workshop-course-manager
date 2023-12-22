@@ -6,9 +6,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import se.lexicon.course_manager.data.sequencers.CourseSequencer;
+import se.lexicon.course_manager.model.Course;
 
+import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = {CourseCollectionRepository.class})
 public class CourseCollectionRepositoryTest {
@@ -19,10 +21,23 @@ public class CourseCollectionRepositoryTest {
     @Test
     @DisplayName("Test context successfully setup")
     void context_loads() {
-        assertFalse(testObject == null);
+        assertNotNull(testObject);
     }
 
-    //Write your tests here
+    @Test
+    public void findById_Successfully() {
+        Course course;
+        course = testObject.createCourse("Java Advanced", LocalDate.parse("2020-01-24"), 24);
+        Course toFind = testObject.findById(1);
+
+        assertEquals(course, toFind);
+    }
+
+    @Test
+    public void findById_UnSuccessfully_returnNull() {
+        Course toFind = testObject.findById(99);
+        assertNull(toFind);
+    }
 
 
     @AfterEach

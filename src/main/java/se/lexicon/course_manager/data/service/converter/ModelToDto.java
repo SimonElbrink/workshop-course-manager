@@ -6,7 +6,7 @@ import se.lexicon.course_manager.dto.views.StudentView;
 import se.lexicon.course_manager.model.Course;
 import se.lexicon.course_manager.model.Student;
 
-
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -14,21 +14,48 @@ import java.util.List;
 public class ModelToDto implements Converters {
     @Override
     public StudentView studentToStudentView(Student student) {
-        return null;
+
+        if (student == null) return null;
+
+        return new StudentView(student.getId(), student.getName(), student.getEmail(), student.getAddress());
+
+
     }
 
     @Override
     public CourseView courseToCourseView(Course course) {
-        return null;
+
+        if (course == null) {
+            return null;
+        }
+
+        return new CourseView(course.getId(), course.getCourseName(), course.getCourseStart(), course.getWeekDuration(), studentsToStudentViews(course.getStudents()));
     }
 
     @Override
     public List<CourseView> coursesToCourseViews(Collection<Course> courses) {
-        return null;
+
+        if (courses == null) return null;
+
+        List<CourseView> courseViewList = new ArrayList<>();
+        for (Course c : courses) {
+            courseViewList.add(courseToCourseView(c));
+        }
+
+        return courseViewList;
+
     }
 
     @Override
     public List<StudentView> studentsToStudentViews(Collection<Student> students) {
-        return null;
+
+        if (students == null) return null;
+
+        List<StudentView> studentViewList = new ArrayList<>();
+        for (Student s :
+                students) {
+            studentViewList.add(studentToStudentView(s));
+        }
+        return studentViewList;
     }
 }
